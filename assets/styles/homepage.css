@@ -1,0 +1,7 @@
+@import './global.css';
+
+.homepage-header {
+    background: url('../images/homepage-header.png') center/cover;
+    padding: 3rem;
+    display: block;
+}
