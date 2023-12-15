@@ -1,0 +1,51 @@
+body{
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background: #211F2A;
+    color: white;
+}
+
+.inscription{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    background:#211F2A ;
+    border-radius: 10px;
+    height: 290px;
+    width: 520px;
+    padding: 40px;
+}
+
+.inscription h2{
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 30px;
+}
+
+.inscription label{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 26px;
+    font-weight: 400;
+    line-height: 39px;
+}
+
+.inscription input{
+    height: 36px;
+    width: 100%;
+    border-radius: 20px;
+    background: #2B2F40;
+    border: 0;
+}
+
+.submit{
+    width: 132px;
+    height: 36px;
+    border-radius: 10px;
+    background: #6757D6;
+}
