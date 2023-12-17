@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/styles/inscription.css">
+    <link rel="stylesheet" href="./assets/styles/inscription.css">
     <title>Inscription</title>
 </head>
+
 <body>
     <div class="container">
-        <form class="inscription">
+        <form class="inscription" method="post">
             <h2>Inscription</h2>
 
             <label for="firstname">Prénom:</label>
@@ -28,6 +30,12 @@
 
             <button type="submit">S'inscrire</button>
         </form>
+        <?php
+        if (isset($error) && $error !== "") {
+            echo $error;
+        }
+        ?>
     </div>
 </body>
+
 </html>
