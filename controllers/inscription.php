@@ -23,7 +23,7 @@ if (isset($_POST['lastname'])) {
 
     //On vérifie que le mail n'existe pas déjà dans la BDD
     $db = Database::getInstance()::getConnection();
-    $query = $db->prepare("SELECT email_user FROM user WHERE email_user = :email");
+    $query = $db->prepare("SELECT email_user FROM ACCOUNT WHERE email_user = :email");
     $query->execute(['email' => $inscription['email']]);
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     if (count($data) >= 1) {
@@ -34,7 +34,7 @@ if (isset($_POST['lastname'])) {
 
     //Si on arrive ici, c'est qu'on va créer le compte
     $hashed_pass = password_hash($inscription['password'], PASSWORD_BCRYPT);
-    $query = $db->prepare("INSERT INTO user (name_user, surname_user, email_user, password_user) VALUES(:name_user, :surname_user, :email_user, :password_user)");
+    $query = $db->prepare("INSERT INTO ACCOUNT (name_user, surname_user, email_user, password_user) VALUES(:name_user, :surname_user, :email_user, :password_user)");
     $res = $query->execute([
         'name_user' => $inscription['lastname'],
         'surname_user' => $inscription['firstname'],
