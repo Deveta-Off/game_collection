@@ -13,7 +13,7 @@ if (isset($_POST['email'])) {
 
     //On récupère le compte correspondant (ou pas)
     $db = Database::getInstance()::getConnection();
-    $query = $db->prepare("SELECT * FROM user WHERE email_user = :email");
+    $query = $db->prepare("SELECT * FROM ACCOUNT WHERE email_user = :email");
     $query->execute(['email' => $connexion['email']]);
     $data = $query->fetch(PDO::FETCH_ASSOC);
 
