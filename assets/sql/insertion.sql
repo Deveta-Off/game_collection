@@ -60,7 +60,7 @@ CREATE TABLE ACCOUNT
     INSERT INTO ACCOUNT
         (name_user, surname_user, email_user, password_user)
     VALUES
-        ('Jean', 'Max', 'max@gmail.com', 'maxpass');
+        ('Jean', 'Max', 'max@gmail.com', '$2y$10$HJ7lfDw92z2y3YH35NyYvO4eunnCgIomsExXf44YE3DyWFE0E990S');
 
     INSERT INTO GAME
         (name_game, description_game, release_date_game, editor_game, url_image_game, url_site_game)
