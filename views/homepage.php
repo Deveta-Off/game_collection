@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PapayeVapeur</title>
     <link rel="stylesheet" href="./assets/styles/homepage.css">
-    <link rel="stylesheet" href="./assets/styles/components/header.css">
 </head>
 
 <body>
@@ -21,6 +20,7 @@
     <h1>
         Home
     </h1>
+    <?php require './assets/components/footer.php'; ?>
 </body>
 
 </html>

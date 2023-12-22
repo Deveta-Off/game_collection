@@ -11,4 +11,10 @@ body {
     color: white;
     font-family: var(--font);
     margin: 0;
+    height: 100%;
+
+}
+
+html, body {
+    height: 100%;
 }
