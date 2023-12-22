@@ -1,4 +1,6 @@
 @import './global.css';
+@import './components/header.css';
+@import './components/footer.css';
 
 .homepage-header {
     background: url('../images/homepage-header.png') center/cover;
