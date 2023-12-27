@@ -24,7 +24,7 @@ body {
   border-spacing: 0;
   border: 1px solid var(--bg-color);
   font-size: 14px;
-  color: #333;
+  color: white;
   table-layout: fixed;
 }
 
@@ -39,12 +39,10 @@ body {
 
 #leaderboard th {
   background-color: var(--bg-color);
-  color: white;
 }
 
 #leaderboard tr:nth-child(even) {
   background-color: var(--modal-color);
-  color: white;
 }
 
 #leaderboard tr:hover {

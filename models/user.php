@@ -74,3 +74,27 @@ function get_user($email){
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
+
+function get_games($email){
+    global $db;
+    $user = get_user($email);
+    $query = $db->prepare("SELECT * FROM GAME JOIN LIBRARY ON LIBRARY.name_game = GAME.name_game WHERE id_user = :id_user");
+    $query->execute(['id_user' => $user[0]['id_user']]);
+    $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+function addLibrary($email, $name_game){
+    global $db;
+    $user = get_user($email);
+    $query = $db->prepare("INSERT INTO LIBRARY (id_user, name_game) VALUES(:id_user, :name_game)");
+    $res = $query->execute([
+        'id_user' => $user[0]['id_user'],
+        'name_game' => $name_game
+    ]);
+    if ($res) {
+        header('Location: /game_collection/');
+    } else {
+        $error = "Erreur lors de l'ajout du jeu !";
+    }
+}
