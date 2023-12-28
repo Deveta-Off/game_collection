@@ -59,9 +59,9 @@ function create_user($inscription)
         'password_user' => $hashed_pass
     ]);
     if ($res) {
-        $_SESSION['lastname'] = $inscription['lastname'];
-        $_SESSION['email'] = $inscription['email'];
-        header('Location: /game_collection/');
+        $lastInsertedId = $db->lastInsertId(); //Récupère l'id de l'utilisateur inséré
+        $_SESSION['id'] = $lastInsertedId; //On l'utilisera pour récupérer les infos
+        header('Location: ./');
     } else {
         $error = "Erreur lors de la création du compte !";
     }
