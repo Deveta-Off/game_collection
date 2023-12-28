@@ -3,7 +3,8 @@
 global $db;
 $db = Database::getInstance()::getConnection();
 
-function connexion($connexion){
+function connexion($connexion)
+{
 
     //On récupère le compte correspondant (ou pas)
     global $db;
@@ -29,7 +30,8 @@ function connexion($connexion){
     header('Location: /game_collection/');
 }
 
-function create_user($inscription){
+function create_user($inscription)
+{
     global $db;
     //On retourne sur la page si les mots de passes ne correspondent pas
     if ($inscription['password'] !== $inscription['confirm-password']) {
@@ -59,15 +61,16 @@ function create_user($inscription){
         'password_user' => $hashed_pass
     ]);
     if ($res) {
-        $_SESSION['lastname'] = $inscription['lastname'];
-        $_SESSION['email'] = $inscription['email'];
-        header('Location: /game_collection/');
+        $lastInsertedId = $db->lastInsertId(); //Récupère l'id de l'utilisateur inséré
+        $_SESSION['id'] = $lastInsertedId; //On l'utilisera pour récupérer les infos
+        header('Location: ./');
     } else {
         $error = "Erreur lors de la création du compte !";
     }
 }
 
-function get_user($email){
+function get_user($email)
+{
     global $db;
     $query = $db->prepare("SELECT * FROM ACCOUNT WHERE email_user = :email");
     $query->execute(['email' => $email]);
@@ -75,7 +78,8 @@ function get_user($email){
     return $data;
 }
 
-function get_games($email){
+function get_games($email)
+{
     global $db;
     $user = get_user($email);
     $query = $db->prepare("SELECT * FROM GAME JOIN LIBRARY ON LIBRARY.name_game = GAME.name_game WHERE id_user = :id_user");
@@ -84,7 +88,8 @@ function get_games($email){
     return $data;
 }
 
-function addLibrary($email, $name_game){
+function addLibrary($email, $name_game)
+{
     global $db;
     $user = get_user($email);
     $query = $db->prepare("INSERT INTO LIBRARY (id_user, name_game) VALUES(:id_user, :name_game)");
