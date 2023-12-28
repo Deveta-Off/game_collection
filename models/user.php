@@ -3,33 +3,33 @@
 global $db;
 $db = Database::getInstance()::getConnection();
 
-function connexion($connexion){
-
+function connexion($connexion)
+{
     //On récupère le compte correspondant (ou pas)
     global $db;
     $query = $db->prepare("SELECT * FROM ACCOUNT WHERE email_user = :email");
     $query->execute(['email' => $connexion['email']]);
-    $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    $data = $query->fetch(PDO::FETCH_ASSOC);
     //On affiche une erreur si le compte existe pas
     if (count($data) < 1) {
-        $error = "Le compte que vous cherchez n'exite pas";
+        $error = "Le compte que vous cherchez n'existe pas";
         require './views/connexion.php';
         die();
     }
     //Erreur si les mots de passe ne correspondent pas
-    if (!password_verify($connexion['password'], $data[0]['password_user'])) {
+    if (!password_verify($connexion['password'], $data['password_user'])) {
         $error = "Le mot de passe est incorrect !";
         require './views/connexion.php';
         die();
     }
 
     //Si on est arrivé jusqu'ici alors tout est bon
-    $_SESSION['lastname'] = $data[0]['name_user'];
-    $_SESSION['email'] = $data[0]['email_user'];
+    $_SESSION['id'] = $data['id_user'];
     header('Location: /game_collection/');
 }
 
-function create_user($inscription){
+function create_user($inscription)
+{
     global $db;
     //On retourne sur la page si les mots de passes ne correspondent pas
     if ($inscription['password'] !== $inscription['confirm-password']) {
@@ -59,18 +59,45 @@ function create_user($inscription){
         'password_user' => $hashed_pass
     ]);
     if ($res) {
-        $_SESSION['lastname'] = $inscription['lastname'];
-        $_SESSION['email'] = $inscription['email'];
-        header('Location: /game_collection/');
+        $lastInsertedId = $db->lastInsertId(); //Récupère l'id de l'utilisateur inséré
+        $_SESSION['id'] = $lastInsertedId; //On l'utilisera pour récupérer les infos
+        header('Location: ./');
     } else {
         $error = "Erreur lors de la création du compte !";
     }
 }
 
-function get_user($email){
+function get_user()
+{
     global $db;
-    $query = $db->prepare("SELECT * FROM ACCOUNT WHERE email_user = :email");
-    $query->execute(['email' => $email]);
+    $query = $db->prepare("SELECT * FROM ACCOUNT WHERE id_user = :id");
+    $query->execute(['id' => $_SESSION['id']]);
+    $data = $query->fetch(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+function get_games($email)
+{
+    global $db;
+    $user = get_user($email);
+    $query = $db->prepare("SELECT * FROM GAME JOIN LIBRARY ON LIBRARY.name_game = GAME.name_game WHERE id_user = :id_user");
+    $query->execute(['id_user' => $user[0]['id_user']]);
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     return $data;
+}
+
+function addLibrary($email, $name_game)
+{
+    global $db;
+    $user = get_user($email);
+    $query = $db->prepare("INSERT INTO LIBRARY (id_user, name_game) VALUES(:id_user, :name_game)");
+    $res = $query->execute([
+        'id_user' => $user[0]['id_user'],
+        'name_game' => $name_game
+    ]);
+    if ($res) {
+        header('Location: /game_collection/');
+    } else {
+        $error = "Erreur lors de l'ajout du jeu !";
+    }
 }
