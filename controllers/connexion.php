@@ -1,5 +1,4 @@
 <?php
-require_once './assets/sql/database.php';
 require_once './models/user.php';
 if (isset($_POST['email'])) {
     connexion(array(

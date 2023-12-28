@@ -1,4 +1,5 @@
 <?php
+require_once './assets/sql/database.php';
 
 global $db;
 $db = Database::getInstance()::getConnection();
@@ -76,23 +77,21 @@ function get_user()
     return $data;
 }
 
-function get_games($email)
+function get_games()
 {
     global $db;
-    $user = get_user($email);
     $query = $db->prepare("SELECT * FROM GAME JOIN LIBRARY ON LIBRARY.name_game = GAME.name_game WHERE id_user = :id_user");
-    $query->execute(['id_user' => $user[0]['id_user']]);
+    $query->execute(['id_user' => $_SESSION['id']]);
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
 
-function addLibrary($email, $name_game)
+function addLibrary($name_game)
 {
     global $db;
-    $user = get_user($email);
     $query = $db->prepare("INSERT INTO LIBRARY (id_user, name_game) VALUES(:id_user, :name_game)");
     $res = $query->execute([
-        'id_user' => $user[0]['id_user'],
+        'id_user' => $_SESSION['id'],
         'name_game' => $name_game
     ]);
     if ($res) {
