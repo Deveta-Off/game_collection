@@ -2,7 +2,8 @@
     --bg-color: #211F2A;
     --modal-color: #252836;
     --input-color: #2B2F40;
-        
+    --btn-color: #6757D6;
+    
     --font: 'Barlow', sans-serif;
 }
 
@@ -11,4 +12,6 @@ body {
     color: white;
     font-family: var(--font);
     margin: 0;
+    height: 100%;
+
 }
