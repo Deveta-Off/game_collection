@@ -5,28 +5,26 @@ $db = Database::getInstance()::getConnection();
 
 function connexion($connexion)
 {
-
     //On récupère le compte correspondant (ou pas)
     global $db;
     $query = $db->prepare("SELECT * FROM ACCOUNT WHERE email_user = :email");
     $query->execute(['email' => $connexion['email']]);
-    $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    $data = $query->fetch(PDO::FETCH_ASSOC);
     //On affiche une erreur si le compte existe pas
     if (count($data) < 1) {
-        $error = "Le compte que vous cherchez n'exite pas";
+        $error = "Le compte que vous cherchez n'existe pas";
         require './views/connexion.php';
         die();
     }
     //Erreur si les mots de passe ne correspondent pas
-    if (!password_verify($connexion['password'], $data[0]['password_user'])) {
+    if (!password_verify($connexion['password'], $data['password_user'])) {
         $error = "Le mot de passe est incorrect !";
         require './views/connexion.php';
         die();
     }
 
     //Si on est arrivé jusqu'ici alors tout est bon
-    $_SESSION['lastname'] = $data[0]['name_user'];
-    $_SESSION['email'] = $data[0]['email_user'];
+    $_SESSION['id'] = $data['id_user'];
     header('Location: /game_collection/');
 }
 
@@ -69,12 +67,12 @@ function create_user($inscription)
     }
 }
 
-function get_user($email)
+function get_user()
 {
     global $db;
-    $query = $db->prepare("SELECT * FROM ACCOUNT WHERE email_user = :email");
-    $query->execute(['email' => $email]);
-    $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    $query = $db->prepare("SELECT * FROM ACCOUNT WHERE id_user = :id");
+    $query->execute(['id' => $_SESSION['id']]);
+    $data = $query->fetch(PDO::FETCH_ASSOC);
     return $data;
 }
 
