@@ -1,0 +1,19 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  height: 100%;
+  position: relative;
+}
+
+body::after {
+  content: "";
+  display: block;
+  height: 1em;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
