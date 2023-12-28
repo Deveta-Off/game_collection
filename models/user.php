@@ -1,4 +1,5 @@
 <?php
+require_once './assets/sql/database.php';
 
 global $db;
 $db = Database::getInstance()::getConnection();
