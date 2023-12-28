@@ -12,7 +12,7 @@
     <?php require './assets/components/header.php'; ?>
     <div class="homepage-header">
         <h1>
-            SALUT <?php echo $isLoggedIn ? $_SESSION['lastname'] : "" ?>
+            SALUT <?php echo $isLoggedIn ? get_user()['name_user'] : "" ?>
             <br> PRÊT A AJOUTER DES
             <br> JEUX A TA COLLECTION ?
         </h1>
