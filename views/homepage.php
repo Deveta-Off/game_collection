@@ -12,13 +12,13 @@
     <?php require './assets/components/header.php'; ?>
     <div class="homepage-header">
         <h1>
-            SALUT <?php echo $isLoggedIn ? get_user()['name_user'] : "" ?>
+            SALUT <?php echo $userName; ?>
             <br> PRÊT A AJOUTER DES
             <br> JEUX A TA COLLECTION ?
         </h1>
     </div>
     <h1>
-        Home
+        <?php require './assets/components/gameList.php' ?>
     </h1>
     <?php require './assets/components/footer.php'; ?>
 </body>
