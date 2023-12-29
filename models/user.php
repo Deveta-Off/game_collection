@@ -77,7 +77,7 @@ function get_user()
     return $data;
 }
 
-function get_games()
+function getUserGames()
 {
     global $db;
     $query = $db->prepare("SELECT * FROM GAME JOIN LIBRARY ON LIBRARY.name_game = GAME.name_game WHERE id_user = :id_user");
