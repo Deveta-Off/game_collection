@@ -22,7 +22,13 @@
                 <input type="submit" value="RECHERCHER" />
             </form>'
             );
-            require('./assets/components/addGameList.php'); //gameList -- Si recherche vide, on affiche le form, sinon la liste
+            if ($search != "") {
+        ?>
+                <h1>Jeux trouvés</h1>
+        <?php
+            }
+
+            require('./assets/components/gameList.php'); //gameList -- Si recherche vide, on affiche le form, sinon la liste
         }
         ?>
     </div>

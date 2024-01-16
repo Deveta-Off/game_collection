@@ -1,9 +1,10 @@
-<?php 
-
+<?php
+require_once './assets/sql/database.php';
 global $db;
 $db = Database::getInstance()::getConnection();
 
-function addGame($game_infos) {
+function addGame($game_infos)
+{
     global $db;
 
     $query = $db->prepare("INSERT INTO GAME (name_game, editor_game, release_date_game, description_game, url_image_game, url_site_game) VALUES(:name_game, :editor_game, :release_date_game, :description_game, :url_image_game, :url_site_game)");
@@ -29,20 +30,22 @@ function addGame($game_infos) {
     }
 }
 
-function getGames($search) {
+function getGames($search)
+{
     global $db;
 
     $filterQuery = "";
 
-    if(!empty($search) && $search != "") {
-        $filterQuery = " WHERE name_game LIKE '".$search."%'";
+    if (!empty($search) && $search != "") {
+        $filterQuery = " WHERE name_game LIKE '" . $search . "%'";
     }
-    $query = $db->query("SELECT * FROM GAME".$filterQuery.";");
+    $query = $db->query("SELECT * FROM GAME" . $filterQuery . ";");
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
 
-function getPlatforms($name_game) {
+function getPlatforms($name_game)
+{
     global $db;
 
     $query = $db->prepare("SELECT name_platform FROM DISPONIBILITY WHERE name_game = :name_game;");
@@ -52,7 +55,8 @@ function getPlatforms($name_game) {
     return $data;
 }
 
-function getAllPlatforms(){
+function getAllPlatforms()
+{
     global $db;
 
     $query = $db->query("SELECT name_platform FROM PLATFORM;");
