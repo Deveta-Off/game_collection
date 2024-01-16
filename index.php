@@ -8,7 +8,6 @@ session_start();
 $page = isset($_GET['page']) ? $_GET['page'] : 'homepage';
 $pageFile = 'controllers/' . $page . '.php';
 $isLoggedIn = isset($_SESSION['id']);
-
 if (file_exists($pageFile)) {
     require $pageFile;
 } else {
