@@ -12,7 +12,7 @@ function connexion($connexion)
     $query->execute(['email' => $connexion['email']]);
     $data = $query->fetch(PDO::FETCH_ASSOC);
     //On affiche une erreur si le compte existe pas
-    if (count($data) < 1) {
+    if ($data == null || count($data) < 1) {
         $error = "Le compte que vous cherchez n'existe pas";
         require './views/connexion.php';
         die();
