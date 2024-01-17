@@ -41,5 +41,5 @@ $platforms = getAllPlatforms();
         <label for="url_site_game">URL du site</label>
         <input type="text" name="url_site_game" placeholder="URL du site" />
     </div>
-    <input class="btn-game-add" name='submit' type="submit" value="Ajouter le jeu" />
+    <input name='submit' type="submit" value="Ajouter le jeu" />
 </form>

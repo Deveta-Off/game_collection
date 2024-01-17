@@ -1,17 +1,58 @@
 :root {
-    --bg-color: #211F2A;
-    --modal-color: #252836;
-    --input-color: #2B2F40;
-    --btn-color: #6757D6;
-    
-    --font: 'Barlow', sans-serif;
+  --bg-color: #211f2a;
+  --modal-color: #252836;
+  --input-color: #2b2f40;
+  --btn-color: #6757d6;
+  --font: "Barlow", sans-serif;
 }
 
 body {
-    background-color: var(--bg-color);
-    color: white;
-    font-family: var(--font);
-    margin: 0;
-    height: 100%;
+  background-color: var(--bg-color);
+  color: white;
+  font-family: var(--font);
+  margin: 0;
+  height: 100%;
+}
 
+/*Les boutons en général (2 types de boutons html : les button classique, et les input type button)*/
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: var(--btn-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  background-color: var(--btn-color);
+}
+
+/*Les inputs textuels en général*/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  background-color: var(--input-color);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: var(--font);
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+/*Affichage d'erreur (connexion, inscription, page profil)*/
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
 }

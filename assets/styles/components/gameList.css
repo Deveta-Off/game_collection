@@ -71,12 +71,5 @@
 }
 
 .btn-game-add {
-  padding: 0.5em 0.75em;
   margin-bottom: 1em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: var(--btn-color);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
 }

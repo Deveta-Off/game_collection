@@ -13,24 +13,3 @@
   flex-direction: column;
   gap: 0.5em;
 }
-
-.form-search input[type="text"] {
-  width: 20vw;
-  padding: 0.8em 1em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: var(--input-color);
-  color: white;
-}
-
-.form-search input[type="submit"] {
-  width: 7.5vw;
-  padding: 0.8em 0.75em;
-  margin-bottom: 1em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: var(--btn-color);
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-}
