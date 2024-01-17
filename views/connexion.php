@@ -12,6 +12,9 @@
     <div class="page-content">
         <form class="auth" method="post">
             <h2>Se connecter à Game Collection</h2>
+            <?php if (isset($error)) { ?>
+                <p class="error"><?php echo $error; ?></p>
+            <?php } ?>
             <div>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
@@ -24,11 +27,6 @@
 
             <button type="submit">Se connecter</button>
         </form>
-        <?php
-        if (isset($error) && $error !== "") {
-            echo $error;
-        }
-        ?>
     </div>
 </body>
 

@@ -5,5 +5,20 @@
 .modifyAccountForm {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  width: 40%;
+}
+
+/*Suppression*/
+.modifyAccountForm p {
+  margin: 0;
+}
+
+.div-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.div-input label {
+  margin-bottom: 0.5em;
 }

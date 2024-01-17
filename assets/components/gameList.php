@@ -19,7 +19,7 @@
         <div class="game-infos">
             <div class="game-name-hours">
                 <h1><?= $game["name_game"] ?></h1>
-                <h4><?= isset($game["hours_played_game"]) ? $game["hours_played_game"]." h" : "" ?></h4>
+                <h4><?= isset($game["hours_played_game"]) ? $game["hours_played_game"] . " h" : "" ?></h4>
             </div>
             <div class="game-platforms">
                 <p><?= $text_platforms ?></p>

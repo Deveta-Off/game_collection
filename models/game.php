@@ -24,7 +24,7 @@ function addGame($game_infos)
                 'name_platform' => $platform
             ]);
         }
-        header('Location: /game_collection/');
+        header('Location: ./');
     } else {
         $error = "Erreur lors de l'ajout du jeu !";
     }

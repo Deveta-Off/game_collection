@@ -13,7 +13,7 @@ function connexion($connexion)
     $data = $query->fetch(PDO::FETCH_ASSOC);
     //On affiche une erreur si le compte existe pas
     if ($data == null || count($data) < 1) {
-        $error = "Le compte que vous cherchez n'existe pas";
+        $error = "Le compte que vous cherchez n'existe pas !";
         require './views/connexion.php';
         die();
     }
@@ -26,7 +26,7 @@ function connexion($connexion)
 
     //Si on est arrivé jusqu'ici alors tout est bon
     $_SESSION['id'] = $data['id_user'];
-    header('Location: /game_collection/');
+    header('Location: ./');
 }
 
 function create_user($inscription)
