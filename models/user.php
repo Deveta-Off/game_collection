@@ -71,10 +71,70 @@ function create_user($inscription)
 function get_user()
 {
     global $db;
-    $query = $db->prepare("SELECT * FROM ACCOUNT WHERE id_user = :id");
+    $query = $db->prepare("SELECT name_user, surname_user, email_user FROM ACCOUNT WHERE id_user = :id");
     $query->execute(['id' => $_SESSION['id']]);
     $data = $query->fetch(PDO::FETCH_ASSOC);
     return $data;
+}
+
+/*$edition doit contenir : 
+- Le nouveau nom
+- Le nouveau prénom
+- Le nouvel email
+- Le mdp + confirmation
+*/
+function edit_user($edition)
+{
+    global $db;
+    //On retourne sur la page si les mots de passes ne correspondent pas
+    if ($edition['password'] !== $edition['confirmPass']) {
+        $action = "modify";
+        $user_infos = get_user();
+        $error = "Le mot de passe et celui de confirmation ne se ressemblent pas !";
+        $isLoggedIn = isset($_SESSION['id']);
+        require './views/profile.php';
+        die();
+    }
+
+    //On récupère les infos du compte, en plus du mot de passe (donc pas de get_user)
+    $query = $db->prepare("SELECT * FROM ACCOUNT WHERE id_user = :id");
+    $query->execute(['id' => $_SESSION['id']]);
+    $data = $query->fetch(PDO::FETCH_ASSOC);
+
+    if (password_verify($edition['password'], $data['password_user'])) {
+        echo "mdp ok";
+    } else {
+        $action = "modify";
+        $user_infos = get_user();
+        $error = "Le mot de passe est incorrect !";
+        $isLoggedIn = isset($_SESSION['id']);
+        require './views/profile.php';
+        die();
+    }
+
+    //Si on arrive ici, c'est qu'on va modifier le compte
+    $query = $db->prepare("UPDATE ACCOUNT SET name_user = :name_user, surname_user = :surname_user, email_user = :email_user WHERE id_user = :id_user");
+    $res = $query->execute([
+        'name_user' => $edition['name'],
+        'surname_user' => $edition['surname'],
+        'email_user' => $edition['email'],
+        'id_user' => $_SESSION['id']
+    ]);
+    if ($res) {
+        $user_infos = get_user();
+        $isLoggedIn = isset($_SESSION['id']);
+        $_POST = array();
+        $action = "";
+        require './views/profile.php';
+        die();
+    }
+}
+
+function delete_user()
+{
+    global $db;
+    $query = $db->prepare("DELETE FROM ACCOUNT WHERE id_user = :id");
+    $query->execute(['id' => $_SESSION['id']]);
 }
 
 function getUserGames()
