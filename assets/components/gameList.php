@@ -1,6 +1,10 @@
 <div class="games">
     <?php
     $games_account = getUserGamesName();
+    //Si la liste des jeux est vide, on affiche un message d'erreur QUE sur la homepage
+    if (($games_account == null || count($games_account) <= 0) && $page == "homepage") {
+        echo "<h2>Vous n'avez pas encore de jeux dans votre bibliothèque !</h2>";
+    }
     foreach ($games as $game) {
         if ($page != "homepage" && in_array($game["name_game"], $games_account)) {
             continue;
