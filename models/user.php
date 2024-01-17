@@ -146,6 +146,19 @@ function getUserGames()
     return $data;
 }
 
+function getUserGamesName()
+{
+    global $db;
+    $query = $db->prepare("SELECT LIBRARY.name_game FROM GAME JOIN LIBRARY ON LIBRARY.name_game = GAME.name_game WHERE id_user = :id_user");
+    $query->execute(['id_user' => $_SESSION['id']]);
+    $data = $query->fetchAll();
+    $names = [];
+    foreach ($data as $game) {
+        array_push($names, $game["name_game"]);
+    }
+    return $names;
+}
+
 function addLibrary($name_game)
 {
     global $db;

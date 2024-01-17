@@ -1,5 +1,7 @@
 <div class="games">
-    <?php foreach ($games as $game) {
+    <?php 
+    $games_account = getUserGamesName();
+    foreach ($games as $game) {
         $platforms = getPlatforms($game["name_game"]);
         $text_platforms = "";
         foreach ($platforms as $platform) {
@@ -17,8 +19,8 @@
                 <div class="game-platforms">
                     <p><?= $text_platforms ?></p>
                 </div>
-                <?php if ($page != "homepage") { ?>
-                    <form method="post">
+                <?php if ($page != "homepage" && !in_array($game["name_game"], $games_account)) { ?>
+                    <form method="post">    
                         <input type="hidden" name="name_game" value="<?= $game["name_game"] ?>" />
                         <input class="btn-game-add" name='submit' type="submit" value="Ajouter à la bibliothèque" />
                     </form>
