@@ -38,9 +38,9 @@
                 <input type="password" id="confirm-password" name="confirm-password" required>
             </div>
 
-            <a href="./connexion">Se connecter</a>
-
             <button type="submit">S'inscrire</button>
+
+            <a href="./connexion">Se connecter</a>
         </form>
         <?php
         if (isset($error) && $error !== "") {
