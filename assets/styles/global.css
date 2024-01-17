@@ -55,6 +55,7 @@ textarea {
   font-size: 1rem;
   transition: all 0.2s ease-in-out;
   padding: 0.5rem;
+  height: 36px;
   box-sizing: border-box; /*Evite que l'input sorte du parent malgré sa taille*/
 }
 
@@ -70,9 +71,8 @@ a {
   text-decoration: none;
   font-weight: bold;
   transition: color 0.2s;
-  
 }
 
-a:hover{
-  color:#EFEFEF;
+a:hover {
+  color: #efefef;
 }

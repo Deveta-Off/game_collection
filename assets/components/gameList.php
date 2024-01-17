@@ -1,6 +1,11 @@
 <div class="games">
-    <?php 
+    <?php
     $games_account = getUserGamesName();
+
+    if ($games == null || count($games) == 0) {
+        echo "<p>Aucun jeu est dans la liste !</p>";
+    }
+
     foreach ($games as $game) {
         $platforms = getPlatforms($game["name_game"]);
         $text_platforms = "";
@@ -20,7 +25,7 @@
                     <p><?= $text_platforms ?></p>
                 </div>
                 <?php if ($page != "homepage" && !in_array($game["name_game"], $games_account)) { ?>
-                    <form method="post">    
+                    <form method="post">
                         <input type="hidden" name="name_game" value="<?= $game["name_game"] ?>" />
                         <input class="btn-game-add" name='submit' type="submit" value="Ajouter à la bibliothèque" />
                     </form>

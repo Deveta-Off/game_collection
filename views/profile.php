@@ -15,24 +15,24 @@
         <form method="post" class="modifyAccountForm">
             <?php if ($action == "modify") { ?>
                 <input type="hidden" name="sendChanges" />
-                <div>
-                    <label for="newName">Nom</label>
+                <div class="div-input">
+                    <label for="newName">Nom :</label>
                     <input type="text" name="newName" value=<?php echo $user_infos['name_user']; ?> />
                 </div>
-                <div>
-                    <label for="newSurname">Prénom</label>
+                <div class="div-input">
+                    <label for="newSurname">Prénom :</label>
                     <input type="text" name="newSurname" value=<?php echo $user_infos['surname_user']; ?> />
                 </div>
-                <div>
-                    <label for="newMail">Email</label>
+                <div class="div-input">
+                    <label for="newMail">Email :</label>
                     <input type="text" name="newMail" value=<?php echo $user_infos['email_user']; ?> />
-                </div>
-                <div>
-                    <label for="newPass">Mot de passe</label>
+                </div class="div-input">
+                <div class="div-input">
+                    <label for="newPass">Mot de passe :</label>
                     <input type="text" name="pass" required />
                 </div>
-                <div>
-                    <label for="confirmPass">Confirmer le mot de passe</label>
+                <div class="div-input">
+                    <label for="confirmPass">Confirmation du mot de passe :</label>
                     <input type="text" name="confirmPass" required />
                 </div>
             <?php } else { ?>
