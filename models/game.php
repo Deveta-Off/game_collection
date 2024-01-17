@@ -63,3 +63,14 @@ function getAllPlatforms()
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     return $data;
 }
+
+function getGame($name_game)
+{
+    global $db;
+
+    $query = $db->prepare("SELECT * FROM GAME WHERE name_game = :name_game;");
+    $query->bindParam(':name_game', $name_game);
+    $query->execute();
+    $data = $query->fetch(PDO::FETCH_ASSOC);
+    return $data;
+}
