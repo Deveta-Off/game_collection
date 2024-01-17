@@ -45,6 +45,7 @@ input[type="submit"]:hover {
 input[type="text"],
 input[type="email"],
 input[type="password"],
+input[type="date"],
 textarea {
   background-color: var(--input-color);
   border: none;

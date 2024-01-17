@@ -1,5 +1,9 @@
 @import "./global.css";
 
+.form-create {
+  width: 40%;
+}
+
 .div-input {
   display: flex;
   flex-direction: column;
