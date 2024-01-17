@@ -10,37 +10,8 @@
   margin-bottom: 0.5em;
 }
 
-.div-input input {
-  width: 30vw;
-  padding: 0.5em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: var(--input-color);
-  color: white;
-}
-
-.div-input textarea {
-  width: 50vw;
-  padding: 0.5em;
-  border: none;
-  border-radius: 0.5em;
-  background-color: var(--input-color);
-  color: white;
-}
-
 .platforms {
   display: flex;
   flex-direction: column;
   margin-bottom: 1em;
 }
-
-.btn-game-add {
-    padding: 0.5em 0.75em;
-    margin-bottom: 1em;
-    border: none;
-    border-radius: 0.5em;
-    background-color: var(--btn-color);
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
-  }
