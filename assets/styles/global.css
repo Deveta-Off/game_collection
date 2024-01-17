@@ -63,3 +63,15 @@ textarea {
   font-size: 0.8rem;
   margin: 0.5rem 0;
 }
+
+a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+  
+}
+
+a:hover{
+  color:#EFEFEF;
+}
