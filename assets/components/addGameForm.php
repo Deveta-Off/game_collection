@@ -3,7 +3,7 @@ $platforms = getAllPlatforms();
 ?>
 <link rel="stylesheet" href="./assets/styles/components/addGameForm.css">
 <p>Le jeu que vous souhaitez ajouter n'existe pas ! Vous pouvez le créer, celui-ci sera automatiquement ajouter à votre bibliothèque !</p>
-<form method="post">
+<form method="post" class="form-create">
     <div class="div-input">
         <label for="game_name">Nom du jeu</label>
         <input type="text" name="game_name" placeholder="Nom du jeu" />
