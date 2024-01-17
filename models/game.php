@@ -23,10 +23,11 @@ function addGame($game_infos)
                 'name_platform' => $platform
             ]);
         }
-        header('Location: /game_collection/');
+        header('Location: ./');
     } catch (PDOException $e) {
-        $error = "Erreur lors de l'ajout du jeu !";
-    }
+
+        header('Location: ./');
+    } 
 }
 
 function getGames($search)

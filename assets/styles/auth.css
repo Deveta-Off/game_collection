@@ -30,3 +30,8 @@ body {
   width: 100%;
   gap: 0.5rem;
 }
+
+/*Car le margin du titre et de l'erreur est relou*/
+.auth > * {
+  margin: 0;
+}
