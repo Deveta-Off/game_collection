@@ -23,9 +23,10 @@
                 <label for="password">Mot de passe:</label>
                 <input type="password" id="password" name="password" required>
             </div>
-            <a href="./inscription">S'inscrire</a>
 
             <button type="submit">Se connecter</button>
+
+            <a href="./inscription">S'inscrire</a>
         </form>
     </div>
 </body>

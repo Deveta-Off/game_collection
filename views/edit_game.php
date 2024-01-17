@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PapayeVapeur</title>
+    <title>Edition d'un jeu</title>
     <link rel="stylesheet" href="./assets/styles/edit_game.css">
 </head>
 
@@ -31,7 +31,7 @@
         </div>
         <div class="right-div">
             <img src=<?= $game["url_image_game"] ?> alt="" />
-        </div>  
+        </div>
     </div>
     <?php require './assets/components/footer.php'; ?>
 </body>
