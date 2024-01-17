@@ -4,6 +4,6 @@
         <a href="./">MA BIBLIOTHEQUE</a>
         <a href="./ajouterJeu">AJOUTER UN JEU</a>
         <a href="./leaderboard">CLASSEMENT</a>
-        <a href="./connexion"><?php echo $isLoggedIn ? "PROFIL" : "CONNEXION" ?></a>
+        <a href=<?php echo $isLoggedIn ? "./profile" : "./connexion" ?>><?php echo $isLoggedIn ? "PROFIL" : "CONNEXION" ?></a>
     </div>
 </div>
