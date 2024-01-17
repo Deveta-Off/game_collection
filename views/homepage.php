@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Game Collection" property="og:title" />
+    <meta content="Un super site répertoriant tes jeux vidéos favoris !" property="og:description" />
     <title>Game Collection</title>
     <link rel="stylesheet" href="./assets/styles/homepage.css">
 </head>
