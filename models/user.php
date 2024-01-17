@@ -162,14 +162,45 @@ function getUserGamesName()
 function addLibrary($name_game)
 {
     global $db;
-    $query = $db->prepare("INSERT INTO LIBRARY (id_user, name_game) VALUES(:id_user, :name_game)");
+    try {
+        $query = $db->prepare("INSERT INTO LIBRARY (id_user, name_game) VALUES(:id_user, :name_game)");
+        $res = $query->execute([
+            'id_user' => $_SESSION['id'],
+            'name_game' => $name_game
+        ]);
+        header('Location: ./');
+    } catch (PDOException $e) {
+        $error = "Erreur lors de l'ajout du jeu !";
+    }
+}
+
+function addHoursPlayedUserGame($name_game, $hours_played)
+{
+    global $db;
+    $query = $db->prepare("UPDATE LIBRARY SET hours_played_game = hours_played_game + :hours_played WHERE id_user = :id_user AND name_game = :name_game");
+    $res = $query->execute([
+        'hours_played' => $hours_played,
+        'id_user' => $_SESSION['id'],
+        'name_game' => $name_game
+    ]);
+    if ($res) {
+        header('Location: ./');
+    } else {
+        $error = "Erreur lors de l'ajout du temps de jeu !";
+    }
+}
+
+function deleteUserGame($name_game)
+{
+    global $db;
+    $query = $db->prepare("DELETE FROM LIBRARY WHERE id_user = :id_user AND name_game = :name_game");
     $res = $query->execute([
         'id_user' => $_SESSION['id'],
         'name_game' => $name_game
     ]);
     if ($res) {
-        header('Location: /game_collection/');
+        header('Location: ./');
     } else {
-        $error = "Erreur lors de l'ajout du jeu !";
+        $error = "Erreur lors de la suppression du jeu !";
     }
 }

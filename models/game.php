@@ -6,17 +6,16 @@ $db = Database::getInstance()::getConnection();
 function addGame($game_infos)
 {
     global $db;
-
-    $query = $db->prepare("INSERT INTO GAME (name_game, editor_game, release_date_game, description_game, url_image_game, url_site_game) VALUES(:name_game, :editor_game, :release_date_game, :description_game, :url_image_game, :url_site_game)");
-    $res = $query->execute([
-        'name_game' => $game_infos['name_game'],
-        'editor_game' => $game_infos['editor_game'],
-        'release_date_game' => $game_infos['release_date_game'],
-        'description_game' => $game_infos['description_game'],
-        'url_image_game' => $game_infos['url_image_game'],
-        'url_site_game' => $game_infos['url_site_game']
-    ]);
-    if ($res) {
+    try {
+        $query = $db->prepare("INSERT INTO GAME (name_game, editor_game, release_date_game, description_game, url_image_game, url_site_game) VALUES(:name_game, :editor_game, :release_date_game, :description_game, :url_image_game, :url_site_game)");
+        $res = $query->execute([
+            'name_game' => $game_infos['name_game'],
+            'editor_game' => $game_infos['editor_game'],
+            'release_date_game' => $game_infos['release_date_game'],
+            'description_game' => $game_infos['description_game'],
+            'url_image_game' => $game_infos['url_image_game'],
+            'url_site_game' => $game_infos['url_site_game']
+        ]);
         foreach ($game_infos['platforms'] as $platform) {
             $query = $db->prepare("INSERT INTO DISPONIBILITY (name_game, name_platform) VALUES(:name_game, :name_platform)");
             $res = $query->execute([
@@ -25,7 +24,7 @@ function addGame($game_infos)
             ]);
         }
         header('Location: /game_collection/');
-    } else {
+    } catch (PDOException $e) {
         $error = "Erreur lors de l'ajout du jeu !";
     }
 }
@@ -61,5 +60,16 @@ function getAllPlatforms()
 
     $query = $db->query("SELECT name_platform FROM PLATFORM;");
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+function getGame($name_game)
+{
+    global $db;
+
+    $query = $db->prepare("SELECT * FROM GAME WHERE name_game = :name_game;");
+    $query->bindParam(':name_game', $name_game);
+    $query->execute();
+    $data = $query->fetch(PDO::FETCH_ASSOC);
     return $data;
 }
