@@ -8,3 +8,14 @@
   padding: 3rem;
   display: block;
 }
+
+.notAuthenticatedComponent {
+  text-align: center;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.notAuthenticatedComponent img {
+  margin: auto;
+}
