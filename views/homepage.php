@@ -12,7 +12,8 @@
     <?php require './assets/components/header.php'; ?>
     <div class="homepage-header">
         <h1>
-            SALUT <?php echo $userName; ?>
+            SALUT
+            <?php echo $userName; ?>
             <br> PRÊT A AJOUTER DES
             <br> JEUX A TA COLLECTION ?
         </h1>
@@ -23,8 +24,11 @@
         if ($isLoggedIn) {
             require './assets/components/gameList.php';
         } else { ?>
-            <p>Connecte toi pour voir ta collection</p>
-        <?php }        ?>
+            <div class="notAuthenticatedComponent">
+                <img src='./assets/images/warning.png' width=100>
+                <p>Connecte-toi pour voir ta collection !</p>
+            </div>
+        <?php } ?>
 
     </div>
     <?php require './assets/components/footer.php'; ?>
