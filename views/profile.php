@@ -29,11 +29,11 @@
                 </div class="div-input">
                 <div class="div-input">
                     <label for="newPass">Mot de passe :</label>
-                    <input type="text" name="pass" required />
+                    <input type="password" name="pass" required />
                 </div>
                 <div class="div-input">
                     <label for="confirmPass">Confirmation du mot de passe :</label>
-                    <input type="text" name="confirmPass" required />
+                    <input type="password" name="confirmPass" required />
                 </div>
             <?php } else { ?>
                 <p>Nom : <?php echo $user_infos['name_user']; ?></p>
