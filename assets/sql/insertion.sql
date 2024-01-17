@@ -42,7 +42,7 @@ CREATE TABLE ACCOUNT
     (
         id_user INT NOT NULL,
         name_game VARCHAR(255) NOT NULL,
-        hours_played_game INT NOT NULL,
+        hours_played_game INT NOT NULL DEFAULT 0,
         PRIMARY KEY (id_user, name_game),
         FOREIGN KEY (id_user) REFERENCES ACCOUNT(id_user),
         FOREIGN KEY (name_game) REFERENCES GAME(name_game)

@@ -9,7 +9,7 @@ function connexion($connexion)
     //On récupère le compte correspondant (ou pas)
     global $db;
     $query = $db->prepare("SELECT * FROM ACCOUNT WHERE email_user = :email");
-    $query->execute(['email' => $connexion['email']]);
+    $query->execute(['email' => htmlspecialchars($connexion['email'], ENT_QUOTES, 'UTF-8')]);
     $data = $query->fetch(PDO::FETCH_ASSOC);
     //On affiche une erreur si le compte existe pas
     if ($data == null || count($data) < 1) {
@@ -18,7 +18,7 @@ function connexion($connexion)
         die();
     }
     //Erreur si les mots de passe ne correspondent pas
-    if (!password_verify($connexion['password'], $data['password_user'])) {
+    if (!password_verify(htmlspecialchars($connexion['password'], ENT_QUOTES, 'UTF-8'), $data['password_user'])) {
         $error = "Le mot de passe est incorrect !";
         require './views/connexion.php';
         die();
@@ -42,7 +42,7 @@ function create_user($inscription)
     //On vérifie que le mail n'existe pas déjà dans la BDD
     $db = Database::getInstance()::getConnection();
     $query = $db->prepare("SELECT email_user FROM ACCOUNT WHERE email_user = :email");
-    $query->execute(['email' => $inscription['email']]);
+    $query->execute(['email' => htmlspecialchars($inscription['email'], ENT_QUOTES, 'UTF-8')]);
     $data = $query->fetchAll(PDO::FETCH_ASSOC);
     if (count($data) >= 1) {
         $error = "L'email a déjà été utilisé pour un autre compte !";
@@ -51,13 +51,13 @@ function create_user($inscription)
     }
 
     //Si on arrive ici, c'est qu'on va créer le compte
-    $hashed_pass = password_hash($inscription['password'], PASSWORD_BCRYPT);
+    $hashed_pass = password_hash(htmlspecialchars($inscription['password'], ENT_QUOTES, 'UTF-8'), PASSWORD_BCRYPT);
     $query = $db->prepare("INSERT INTO ACCOUNT (name_user, surname_user, email_user, password_user) VALUES(:name_user, :surname_user, :email_user, :password_user)");
     $res = $query->execute([
-        'name_user' => $inscription['lastname'],
-        'surname_user' => $inscription['firstname'],
-        'email_user' => $inscription['email'],
-        'password_user' => $hashed_pass
+        'name_user' => htmlspecialchars($inscription['lastname'], ENT_QUOTES, 'UTF-8'),
+        'surname_user' => htmlspecialchars($inscription['firstname'], ENT_QUOTES, 'UTF-8'),
+        'email_user' => htmlspecialchars($inscription['email'], ENT_QUOTES, 'UTF-8'),
+        'password_user' => htmlspecialchars($hashed_pass, ENT_QUOTES, 'UTF-8')
     ]);
     if ($res) {
         $lastInsertedId = $db->lastInsertId(); //Récupère l'id de l'utilisateur inséré
@@ -115,10 +115,10 @@ function edit_user($edition)
     //Si on arrive ici, c'est qu'on va modifier le compte
     $query = $db->prepare("UPDATE ACCOUNT SET name_user = :name_user, surname_user = :surname_user, email_user = :email_user WHERE id_user = :id_user");
     $res = $query->execute([
-        'name_user' => $edition['name'],
-        'surname_user' => $edition['surname'],
-        'email_user' => $edition['email'],
-        'id_user' => $_SESSION['id']
+        'name_user' => htmlspecialchars($edition['name'], ENT_QUOTES, 'UTF-8'),
+        'surname_user' => htmlspecialchars($edition['surname'], ENT_QUOTES, 'UTF-8'),
+        'email_user' => htmlspecialchars($edition['email'], ENT_QUOTES, 'UTF-8'),
+        'id_user' => htmlspecialchars($_SESSION['id'], ENT_QUOTES, 'UTF-8')
     ]);
     if ($res) {
         $user_infos = get_user();
@@ -192,9 +192,9 @@ function addHoursPlayedUserGame($name_game, $hours_played)
     global $db;
     $query = $db->prepare("UPDATE LIBRARY SET hours_played_game = hours_played_game + :hours_played WHERE id_user = :id_user AND name_game = :name_game");
     $res = $query->execute([
-        'hours_played' => $hours_played,
+        'hours_played' => htmlspecialchars($hours_played, ENT_QUOTES, 'UTF-8'),
         'id_user' => $_SESSION['id'],
-        'name_game' => $name_game
+        'name_game' => htmlspecialchars($name_game, ENT_QUOTES, 'UTF-8'),
     ]);
     if ($res) {
         header('Location: ./');
