@@ -101,9 +101,7 @@ function edit_user($edition)
     $query->execute(['id' => $_SESSION['id']]);
     $data = $query->fetch(PDO::FETCH_ASSOC);
 
-    if (password_verify($edition['password'], $data['password_user'])) {
-        echo "mdp ok";
-    } else {
+    if (!password_verify($edition['password'], $data['password_user'])) {
         $action = "modify";
         $user_infos = get_user();
         $error = "Le mot de passe est incorrect !";
