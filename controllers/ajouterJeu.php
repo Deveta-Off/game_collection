@@ -7,7 +7,7 @@ $games = getGames($search);
 if (isset($_POST["submit"])) {
     if ($_POST["submit"]  == "Ajouter à la bibliothèque") {
         if ($isLoggedIn) {
-            header('Location: index.php?page=connexion');
+            header('Location: ./connexion');
             exit();
         }
         if (isset($_POST["name_game"]))

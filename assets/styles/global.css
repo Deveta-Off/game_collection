@@ -61,9 +61,8 @@ textarea {
 
 /*Affichage d'erreur (connexion, inscription, page profil)*/
 .error {
-  color: red;
-  font-size: 0.8rem;
-  margin: 0.5rem 0;
+  color: rgb(239, 0, 0);
+  font-size: 1rem;
 }
 
 a {

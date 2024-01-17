@@ -44,8 +44,8 @@
                 <p class="error"><?php echo $error; ?></p>
             <?php } ?>
             <button type="submit" name="action" value="modify"><?php echo $action != "modify" ? "Modifier mon compte" : "Modifier" ?></button>
-            <button type="submit" name="action" value="delete">Supprimer mon compte</button>
-            <button type="submit" name="action" value="logout">Se déconnecter</button>
+            <button type="submit" name="action" value="delete" formnovalidate>Supprimer mon compte</button>
+            <button type="submit" name="action" value="logout" formnovalidate>Se déconnecter</button>
         </form>
     </div>
     <?php require './assets/components/footer.php'; ?>
