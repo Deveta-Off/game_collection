@@ -5,6 +5,7 @@
     if (($games_account == null || count($games_account) <= 0) && $page == "homepage") {
         echo "<h2>Vous n'avez pas encore de jeux dans votre bibliothèque !</h2>";
     }
+    $gamesAvailable = 0;
     foreach ($games as $game) {
         if ($page != "homepage" && in_array($game["name_game"], $games_account)) {
             continue;
@@ -15,6 +16,7 @@
             $text_platforms .= $platform["name_platform"] . ", ";
         }
         $text_platforms = substr($text_platforms, 0, -2);
+        $gamesAvailable++;
     ?>
         <?= $page == "homepage" ? '<a href="./edit_game?game=' . $game["name_game"] . '" class=game>' : '<div class=game>' ?>
         <div class="game-image">
@@ -36,5 +38,8 @@
             <?php } ?>
         </div>
         <?= $page == "homepage" ? "</a>" : "</div>" ?>
-    <?php } ?>
+    <?php }
+    if ($gamesAvailable == 0 && $page != "homepage") {
+        echo "<h2>Vous avez déjà tous les jeux disponibles !</h2>";
+    } ?>
 </div>
