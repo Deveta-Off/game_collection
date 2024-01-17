@@ -159,6 +159,19 @@ function getUserGamesName()
     return $names;
 }
 
+function getUserGame($name_game)
+{
+    global $db;
+    $query = $db->prepare("SELECT * FROM GAME JOIN LIBRARY ON LIBRARY.name_game = GAME.name_game WHERE id_user = :id_user AND LIBRARY.name_game = :name_game");
+    $query->execute([
+        'id_user' => $_SESSION['id'],
+        'name_game' => $name_game
+    ]);
+    $data = $query->fetch(PDO::FETCH_ASSOC);
+    return $data;
+}
+
+
 function addLibrary($name_game)
 {
     global $db;
@@ -168,8 +181,38 @@ function addLibrary($name_game)
         'name_game' => $name_game
     ]);
     if ($res) {
-        header('Location: /game_collection/');
+        header('Location: ./');
     } else {
         $error = "Erreur lors de l'ajout du jeu !";
+    }
+}
+
+function addHoursPlayedUserGame($name_game, $hours_played)
+{
+    global $db;
+    $query = $db->prepare("UPDATE LIBRARY SET hours_played_game = hours_played_game + :hours_played WHERE id_user = :id_user AND name_game = :name_game");
+    $res = $query->execute([
+        'hours_played' => $hours_played,
+        'id_user' => $_SESSION['id'],
+        'name_game' => $name_game
+    ]);
+    if ($res) {
+        header('Location: ./');
+    } else {
+        $error = "Erreur lors de l'ajout du temps de jeu !";
+    }
+}
+
+function deleteUserGame ($name_game) {
+    global $db;
+    $query = $db->prepare("DELETE FROM LIBRARY WHERE id_user = :id_user AND name_game = :name_game");
+    $res = $query->execute([
+        'id_user' => $_SESSION['id'],
+        'name_game' => $name_game
+    ]);
+    if ($res) {
+        header('Location: ./');
+    } else {
+        $error = "Erreur lors de la suppression du jeu !";
     }
 }
