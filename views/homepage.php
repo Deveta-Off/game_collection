@@ -17,9 +17,16 @@
             <br> JEUX A TA COLLECTION ?
         </h1>
     </div>
-    <h1>
-        <?php require './assets/components/gameList.php' ?>
-    </h1>
+    <div class="page-content">
+        <h1>Mes jeux</h1>
+        <?php
+        if ($isLoggedIn) {
+            require './assets/components/gameList.php';
+        } else { ?>
+            <p>Connecte toi pour voir ta collection</p>
+        <?php }        ?>
+
+    </div>
     <?php require './assets/components/footer.php'; ?>
 </body>
 

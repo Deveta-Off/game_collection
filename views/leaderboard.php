@@ -10,7 +10,7 @@
 
 <body>
     <?php require './assets/components/header.php'; ?>
-    <div class="center-div">
+    <div class="page-content">
         <div id="leaderboard">
             <h1>Classement</h1>
             <table>
@@ -22,7 +22,7 @@
                 <?php foreach ($leaderboard as $row) { ?>
                     <tr>
                         <td><?php echo ($row['name_user'] . " " . $row['surname_user']); ?></td>
-                        <td><?php echo $row['hours_played_game']." h"; ?></td>
+                        <td><?php echo $row['hours_played_game'] . " h"; ?></td>
                         <td><?php echo $row['name_game']; ?></td>
                     </tr>
                 <?php } ?>

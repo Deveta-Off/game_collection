@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="page-content">
         <form class="inscription" method="post">
             <h2>Connexion</h2>
             <label for="email">Email:</label>

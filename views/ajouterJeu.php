@@ -10,7 +10,7 @@
 
 <body>
     <?php require './assets/components/header.php'; ?>
-    <div class="main">
+    <div class="page-content">
         <h1>Ajouter un jeu à sa bibliothèque</h1>
         <?php
         if ($games == null || count($games) <= 0) {

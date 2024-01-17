@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="page-content">
         <form class="inscription" method="post">
             <h2>Inscription</h2>
 
