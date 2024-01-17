@@ -25,8 +25,8 @@ function addGame($game_infos)
         }
         header('Location: ./');
     } catch (PDOException $e) {
-        echo $e->getMessage();
-    }
+        header('Location: ./');
+    } 
 }
 
 function getGames($search)
