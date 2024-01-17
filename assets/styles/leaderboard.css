@@ -2,10 +2,6 @@
 @import "./components/header.css";
 @import "./components/footer.css";
 
-body {
-  height: 100vh;
-}
-
 .table-fix-head {
   overflow-y: auto;
   height: 100%;
@@ -13,10 +9,12 @@ body {
 
 /*Override le style global*/
 .page-content {
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 0;
 }
 
 #leaderboard > table {
