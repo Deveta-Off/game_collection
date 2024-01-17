@@ -24,7 +24,7 @@ CREATE TABLE ACCOUNT
     CREATE TABLE GAME
     (
         name_game VARCHAR(255) NOT NULL,
-        description_game VARCHAR(255) NOT NULL,
+        description_game VARCHAR(1000) NOT NULL,
         release_date_game DATE NOT NULL,
         editor_game VARCHAR(255) NOT NULL,
         url_image_game VARCHAR(255) NOT NULL,
